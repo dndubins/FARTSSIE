@@ -20,3 +20,5 @@ Hidden under the visual basic code of FARTSSIE is the version history:
 'Version 2.5: Removed Reference-Scaled BE Limits (skewed results at higher CVs, improper method implemented). Added links to PowerTOST.
 'Version 2.6: Added graphs to Parallel BE worksheet, and Mac had some macro issues with Double variable type (changed to Variant).
 'Version 2.7: PowerTOST suggested example code corrected.
+
+I have also added a few random unvalidated tools I have developed over the years that have been sitting on my hard drive (again, offered as a "free" second opinion).
