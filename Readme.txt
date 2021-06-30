@@ -22,3 +22,4 @@ Hidden under the visual basic code of FARTSSIE is the version history:
 'Version 2.7: PowerTOST suggested example code corrected.
 
 I have also added a few random unvalidated tools I have developed over the years that have been sitting on my hard drive (again, offered as a "free" second opinion).
+These programs are unvalidated, lightly tested, and come with no guarantees of cross-platform compatibilities or errors.
