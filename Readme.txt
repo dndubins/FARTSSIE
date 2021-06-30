@@ -22,6 +22,6 @@ Hidden under the visual basic code of FARTSSIE is the version history:
 'Version 2.7: PowerTOST suggested example code corrected.
 
 I have also added a few random tools I have developed over the years that have been sitting on my hard drive (again, offered as a "free" second opinion).
-These programs are unvalidated, only lightly tested, and come with no guarantees of cross-platform compatibility or validity. Some of them are being used as proof-of-concept programs in the bioequivalence courses I teach at the Leslie Dan Faculty of Pharmacy.
+These programs are unvalidated, only lightly tested, and come with no guarantees of cross-platform compatibility or accuracy. Some of them are being used as proof-of-concept programs in the bioequivalence courses I teach at the Leslie Dan Faculty of Pharmacy.
 
 For instance, the bootstrapping programs I posted do not run a single ANOVA. Think "high-school" level standard error. However, they do give surprisingly good agreement with calculated power, and bootstrapping is a stochastic method after all.
