@@ -25,3 +25,9 @@ I have also added a few random tools I have developed over the years that have b
 These programs are unvalidated, only lightly tested, and come with no guarantees of cross-platform compatibility or accuracy. Some of them are being used as proof-of-concept programs in the bioequivalence courses I teach at the Leslie Dan Faculty of Pharmacy.
 
 For instance, the bootstrapping programs I posted do not run a single ANOVA. Think "high-school" level standard error. However, they do give surprisingly good agreement with calculated power, and bootstrapping is a stochastic method after all.
+
+“You know," said Arthur, "it's at times like this, when I'm trapped in a Vogon airlock with a man from Betelgeuse, and about to die of asphyxiation in deep space that I really wish I'd listened to what my mother told me when I was young."
+"Why, what did she tell you?"
+"I don't know, I didn't listen.”
+― Douglas Adams, The Hitchhiker's Guide to the Galaxy
+(also applicable to my relationship with statistics)
