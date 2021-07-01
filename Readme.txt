@@ -20,6 +20,7 @@ Hidden under the visual basic code of FARTSSIE is the version history:
 'Version 2.5: Removed Reference-Scaled BE Limits (skewed results at higher CVs, improper method implemented). Added links to PowerTOST.
 'Version 2.6: Added graphs to Parallel BE worksheet, and Mac had some macro issues with Double variable type (changed to Variant).
 'Version 2.7: PowerTOST suggested example code corrected.
+'Version 2.8: FARTSSIE moves to Github! TotalCV calculation added to Parallel BE sheet. Prompt for CV on Parallel BE updated to Total CV.
 
 I have also added a few random tools I have developed over the years that have been sitting on my hard drive (again, offered as a "free" second opinion).
 These programs are unvalidated, only lightly tested, and come with no guarantees of cross-platform compatibility or accuracy. Some of them are being used as proof-of-concept programs in the bioequivalence courses I teach at the Leslie Dan Faculty of Pharmacy.
