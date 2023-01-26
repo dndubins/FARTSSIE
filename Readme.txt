@@ -22,6 +22,7 @@ Hidden under the visual basic code of FARTSSIE is the version history:
 'Version 2.7: PowerTOST suggested example code corrected.
 'Version 2.8: FARTSSIE moves to Github! TotalCV calculation added to Parallel BE sheet. Prompt for CV on Parallel BE updated to Total CV.
 ' There were a few "quiet" updates for version 2.8 that didn't warrant a version number increase. For instance I think I finally found and corrected the Error 13 bug on some Mac platforms.
+'Version 2.9: Two worksheets were added to estimate the combined dropout rates and buffer the sample size accordingly: "Dropouts - 2 rates", and "Dropouts - 3 rates".
 
 I have also added a few random tools I have developed over the years that have been sitting on my hard drive (again, offered as a "free" second opinion).
 These programs are unvalidated, only lightly tested, and come with no guarantees of cross-platform compatibility or accuracy. Some of them are being used as proof-of-concept programs in the bioequivalence courses I teach at the Leslie Dan Faculty of Pharmacy.
