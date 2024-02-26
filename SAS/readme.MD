@@ -1,1 +1,1 @@
-These are some SAS programs that may or may not be of use.
+These are some SAS programs that may be of use. They are written for the SAS OnDemand for Academics (SAS Studio) platform.
