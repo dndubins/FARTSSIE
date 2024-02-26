@@ -8,11 +8,11 @@
 %LET CONCFORMAT=9.2;	  /* Same as LLOQ. Format for Cmax, AUCt, etc. */
 %LET RATIOFORMAT=7.4;	  /* format for AUCratio, lambda */
 
-/* Output the results to a file. In SAS Studio, you need to create this file first
-on the server, right-click the file, find out the folder, then copy the correct path and
-filename below. */
-FILENAME ZZ "/home/u63317948/output.txt";
-PROC PRINTTO NEW PRINT=ZZ;
+/* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
+Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
+path and output filename below. The program will create the output file or over-write it if it exits.*/
+FILENAME _n&sysindex "/home/u63317948/output/crossover.txt";
+PROC PRINTTO NEW PRINT=_n&sysindex;
 RUN;
 
 OPTION NODATE PS=43 LS=120 NONUMBER;
@@ -61,7 +61,7 @@ datalines;
 11	AB	1	A	165.365	200.2484275	23.15	4	0.148494583	4.66782807	0.825799244
 11	AB	2	B	269.01575	322.881255	57.05	1.5	0.141092152	4.912726701	0.8331724
 12	BA	1	B	105.5625	125.9648343	47.2	0.66	0.356331774	1.945229784	0.838031507
-12	BA	2	A	87.9882	112.2665638	37.76	0.66	0.262785419	2.6376927	0.783743592
+12	BA	2	A	87.9882	.	37.76	0.66	0.262785419	2.6376927	.
 13	BA	1	B	290.142	310.4973322	70.88	1.5	0.402842848	1.720639161	0.934442811
 13	BA	2	A	182.77325	214.6103051	43.3	1	0.241228342	2.873406896	0.851651788
 14	AB	1	A	122.47815	149.0976283	68.25	0.66	0.478596908	1.448290135	0.821462765

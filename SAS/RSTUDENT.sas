@@ -8,17 +8,21 @@ with minor modifications.
 
 */
 
-/* Output the results to a file. In SAS Studio, you need to create this file first
-on the server, right-click the file, find out the folder, then copy the correct path and
-filename below. */
-FILENAME ZZ "/home/u63317948/output.txt";
-PROC PRINTTO NEW PRINT=ZZ;
+/* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
+Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
+path and output filename below. The program will create the output file, or over-write it if it exits.*/
+
+/* Create an output file: */
+FILENAME _n&sysindex "/home/u63317948/output/rstudent.txt";
+PROC PRINTTO NEW PRINT=_n&sysindex;
 RUN;
+
+OPTION NODATE PS=43 LS=120 NONUMBER;
 
 *Input the data.;
 data ABEexample1;
 infile datalines DSD delimiter='09'x; /* tab delimited data */
-input subject sequence $ period treatment $ AUCt AUCinf Cmax;
+input Subject Sequence $ Period Treatment $ AUCt AUCinf Cmax;
 lnauct=log(AUCt);
 lnaucinf=log(AUCinf);
 lncmax=log(Cmax);
@@ -80,9 +84,9 @@ proc print label data=Outstats_AUCt noobs;
 var Subject Sequence Period AUCt lnauct resid rstudent cookd;
 BY Treatment;
 title1 "Outlier Analysis for ln-AUCt";
-label subject="Subject"
-	period="Period"
-	treatment="Treatment"
+label Subject="Subject"
+	Period="Period"
+	Treatment="Treatment"
 	AUCt="AUCt"
     lnauct="ln(AUCt)";
 run;
@@ -110,9 +114,9 @@ proc print label data=Outstats_AUCinf noobs;
 var Subject Sequence Period AUCinf lnaucinf resid rstudent cookd;
 BY Treatment;
 title1 "Outlier Analysis for ln-AUCinf";
-label subject="Subject"
-	period="Period"
-	treatment="Treatment"
+label Subject="Subject"
+	Period="Period"
+	Treatment="Treatment"
 	AUCinf="AUCinf"
     lnaucinf="ln(AUCinf)";
 run; 
@@ -139,10 +143,9 @@ proc print label data=Outstats_Cmax noobs;
 var Subject Sequence Period Cmax lncmax resid rstudent cookd;
 BY Treatment;
 title1 "Outlier Analysis for ln-Cmax";
-label subject="Subject"
-	period="Period"
-	treatment="Treatment"
+label Subject="Subject"
+	Period="Period"
+	Treatment="Treatment"
 	Cmax="Cmax"
     lncmax="ln(Cmax)";
 run; 
-

@@ -10,11 +10,11 @@ with minor modifications. The original program is available for download here:
 http://www.crcpress.com/e_products/downloads/download.asp?cat_no=C5300
 */
 
-/* Output the results to a file. In SAS Studio, you need to create this file first
-on the server, right-click the file, find out the folder, then copy the correct path and
-filename below. */
-FILENAME ZZ "/home/u63317948/output.txt";
-PROC PRINTTO NEW PRINT=ZZ;
+/* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
+Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
+path and output filename below. The program will create the output file, or over-write it if it exits.*/
+FILENAME _n&sysindex "/home/u63317948/output/bootstrap.txt";
+PROC PRINTTO NEW PRINT=_n&sysindex;
 RUN;
 
 data bootexample;
