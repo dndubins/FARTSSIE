@@ -9,6 +9,10 @@
 
 #Now copy and paste the following into R:
 library(nlme)
+factors       <- c("Subject", "Sequence", "Period", "Treatment")
+ABEexample1[factors] <- lapply(ABEexample1[factors], factor) # factorize for lme()
+str(ABEexample1) #check the data
+
 lm.lnAUCtau <- lme(-log(AUCtau)~Treatment+Period+Sequence, data=SSexample1, random=~1|Subject,na.action=na.exclude)
 lm.lnCssmax <- lme(-log(Cssmax)~Treatment+Period+Sequence, data=SSexample1, random=~1|Subject,na.action=na.exclude)
 lm.lnCssmin <- lme(-log(Cssmin)~Treatment+Period+Sequence, data=SSexample1, random=~1|Subject,na.action=na.exclude)

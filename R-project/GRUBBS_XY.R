@@ -57,8 +57,7 @@ rsq
 # Now let's plot the residuals (Yobs-Ymodel)
 resid = Y-fn(Myfitout$estimate[1],Myfitout$estimate[2])
 plot(resid)
-# Run the grubb's test on the residuals. The test will identify if the out-most residual
-# is an outlier. Use the residual plot to identify the suspect point in the best-fit plot.
+# Run the grubb's test on the residuals
 grubbs.test(resid, type = 10, opposite = FALSE, two.sided = TRUE)
 # "type" is an integer value indicating test variant. 
 # 10 is a test for one outlier (side is detected automatically and 

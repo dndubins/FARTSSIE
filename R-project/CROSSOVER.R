@@ -7,15 +7,15 @@
 #ABEexample1 <- read.table(pipe("pbpaste"), header=TRUE)
 
 #Now copy and paste the following into R: (or select "Edit", then "Run all")
-attach(ABEexample1)
+
 library(nlme)
 factors       <- c("Subject", "Sequence", "Period", "Treatment")
 ABEexample1[factors] <- lapply(ABEexample1[factors], factor) # factorize for lme()
 str(ABEexample1) #check the data
 
-lm.lnauct <- lme(-log(AUCt)~Treatment, data=ABEexample1,random=~1|Subject,na.action=na.exclude)
-lm.lnaucinf <- lme(-log(AUCinf)~Treatment, data=ABEexample1,random=~1|Subject,na.action=na.exclude)
-lm.lncmax <- lme(-log(Cmax)~Treatment, data=ABEexample1,random=~1|Subject,na.action=na.exclude)
+lm.lnauct <- lme(-log(AUCt)~Treatment+Period+Sequence, data=ABEexample1, random=~1|Subject,na.action=na.exclude)
+lm.lnaucinf <- lme(-log(AUCinf)~Treatment+Period+Sequence, data=ABEexample1, random=~1|Subject,na.action=na.exclude)
+lm.lncmax <- lme(-log(Cmax)~Treatment+Period+Sequence, data=ABEexample1, random=~1|Subject,na.action=na.exclude)
 
 #Analysis for AUCt
 summary(lm.lnauct)
@@ -52,33 +52,37 @@ UpperCI <- c(AUCt.intervals$fixed[2,3], AUCinf.intervals$fixed[2,3],Cmax.interva
 ANOVA_lnResults <- data.frame(Parameter, Stderr, Ratio, LowerCI, UpperCI)
 
 Parameter <- c("AUCt","AUCinf","Cmax")
+IntraCV <- c(100*((exp(as.numeric(AUCt.var[2]))-1)^0.5),100*((exp(as.numeric(AUCinf.var[2]))-1)^0.5),100*((exp(as.numeric(Cmax.var[2]))-1)^0.5))
 InterCV <- c(100*((exp(as.numeric(AUCt.var[1]))-1)^0.5),100*((exp(as.numeric(AUCinf.var[1]))-1)^0.5),100*((exp(as.numeric(Cmax.var[1]))-1)^0.5))
 LowerCI <- 100*exp(LowerCI)
 Ratio <- 100*exp(Ratio)
 UpperCI <- 100*exp(UpperCI)
 pVal_TRT <- c(summary(lm.lnauct)$tTable[2,5],summary(lm.lnaucinf)$tTable[2,5],summary(lm.lncmax)$tTable[2,5])
+pVal_PER <- c(summary(lm.lnauct)$tTable[3,5],summary(lm.lnaucinf)$tTable[3,5],summary(lm.lncmax)$tTable[3,5])
+pVal_SEQ <- c(summary(lm.lnauct)$tTable[4,5],summary(lm.lnaucinf)$tTable[4,5],summary(lm.lncmax)$tTable[4,5])
 
 #Calculate Power
-n_auct <- lm.lnauct$dims$N
-tau1_auct <- sqrt(n_auct)*log(Ratio[1]/80)/(sqrt(2*as.numeric(AUCt.var[1])))
-tau2_auct <- sqrt(n_auct)*log(Ratio[1]/125)/(sqrt(2*as.numeric(AUCt.var[1])))
-Power_auct <- 100*(pt(tau1_auct-qt(0.95,2*n_auct-2),df=2*n_auct-2) - pt(tau2_auct+qt(0.95,2*n_auct-2),df=2*n_auct-2))
+n_auct <- lm.lnauct$dims$N/2
+tau1_auct <- sqrt(n_auct)*log(Ratio[1]/80)/(sqrt(2*as.numeric(AUCt.var[2])))
+tau2_auct <- sqrt(n_auct)*log(Ratio[1]/125)/(sqrt(2*as.numeric(AUCt.var[2])))
+Power_auct <- 100*(pt(tau1_auct-qt(0.95,n_auct-2),df=n_auct-2) - pt(tau2_auct+qt(0.95,n_auct-2),df=n_auct-2))
 
-n_aucinf <- lm.lnaucinf$dims$N
-tau1_aucinf <- sqrt(n_aucinf)*log(Ratio[2]/80)/(sqrt(2*as.numeric(AUCinf.var[1])))
-tau2_aucinf <- sqrt(n_aucinf)*log(Ratio[2]/125)/(sqrt(2*as.numeric(AUCinf.var[1])))
-Power_aucinf <- 100*(pt(tau1_aucinf-qt(0.95,2*n_aucinf-2),df=2*n_aucinf-2) - pt(tau2_aucinf+qt(0.95,2*n_aucinf-2),df=2*n_aucinf-2))
+n_aucinf <- lm.lnaucinf$dims$N/2
+tau1_aucinf <- sqrt(n_aucinf)*log(Ratio[2]/80)/(sqrt(2*as.numeric(AUCinf.var[2])))
+tau2_aucinf <- sqrt(n_aucinf)*log(Ratio[2]/125)/(sqrt(2*as.numeric(AUCinf.var[2])))
+Power_aucinf <- 100*(pt(tau1_aucinf-qt(0.95,n_aucinf-2),df=n_aucinf-2) - pt(tau2_aucinf+qt(0.95,n_aucinf-2),df=n_aucinf-2))
 
-n_cmax <- lm.lncmax$dims$N
-tau1_cmax <- sqrt(n_cmax)*log(Ratio[3]/80)/(sqrt(2*as.numeric(Cmax.var[1])))
-tau2_cmax <- sqrt(n_cmax)*log(Ratio[3]/125)/(sqrt(2*as.numeric(Cmax.var[1])))
-Power_cmax <- 100*(pt(tau1_cmax-qt(0.95,2*n_cmax-2),df=2*n_cmax-2) - pt(tau2_cmax+qt(0.95,2*n_cmax-2),df=2*n_cmax-2))
+n_cmax <- lm.lncmax$dims$N/2
+tau1_cmax <- sqrt(n_cmax)*log(Ratio[3]/80)/(sqrt(2*as.numeric(Cmax.var[2])))
+tau2_cmax <- sqrt(n_cmax)*log(Ratio[3]/125)/(sqrt(2*as.numeric(Cmax.var[2])))
+Power_cmax <- 100*(pt(tau1_cmax-qt(0.95,n_cmax-2),df=n_cmax-2) - pt(tau2_cmax+qt(0.95,n_cmax-2),df=n_cmax-2))
 
 Power <- c(Power_auct, Power_aucinf, Power_cmax)
 
-ANOVA_Results <- data.frame(Parameter, InterCV, Ratio, LowerCI, UpperCI, pVal_TRT, Power)
+ANOVA_Results <- data.frame(Parameter, IntraCV, InterCV, Ratio, LowerCI, UpperCI, pVal_TRT, pVal_PER, pVal_SEQ, Power)
 
 #Calculate Descriptive Statistics for Treatment A:
+attach(ABEexample1)
 Statistic <- c("n","Mean","Median","Min","Max","STDEV","%CV")
 AUCt_A <- c(length(na.omit(AUCt[Treatment == "A"])),mean(AUCt[Treatment == "A"],na.rm=TRUE),median(AUCt[Treatment == "A"],na.rm=TRUE),min(AUCt[Treatment == "A"],na.rm=TRUE),max(AUCt[Treatment == "A"],na.rm=TRUE),sd(AUCt[Treatment == "A"],na.rm=TRUE),100*sd(AUCt[Treatment == "A"],na.rm=TRUE)/mean(AUCt[Treatment == "A"],na.rm=TRUE))
 AUCinf_A <- c(length(na.omit(AUCinf[Treatment == "A"])),mean(AUCinf[Treatment == "A"],na.rm=TRUE),median(AUCinf[Treatment == "A"],na.rm=TRUE),min(AUCinf[Treatment == "A"],na.rm=TRUE),max(AUCinf[Treatment == "A"],na.rm=TRUE),sd(AUCinf[Treatment == "A"],na.rm=TRUE),100*sd(AUCinf[Treatment == "A"],na.rm=TRUE)/mean(AUCinf[Treatment == "A"],na.rm=TRUE))
