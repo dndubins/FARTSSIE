@@ -6,6 +6,9 @@
 #For MacOS:
 #ABEexample1 <- read.table(pipe("pbpaste"), header=TRUE)
 
+factors       <- c("Subject", "Sequence", "Period", "Treatment")
+ABEexample1[factors] <- lapply(ABEexample1[factors], factor) # factorize for glm()
+
 #Now copy and paste the following into R: (change variable as necessary)
 lm.lnauct <- glm(log(AUCt)~Treatment+Period+Sequence+Subject%in%Sequence, data=ABEexample1, na.action=na.exclude)
 
