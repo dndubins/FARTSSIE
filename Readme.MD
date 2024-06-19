@@ -17,8 +17,9 @@ VERSION HISTORY
 Version 3.0: Corrected routine to calculate total CV from published CI for Bioequivalence, Parallel (PowerTOST method).
 Version 2.9: Two worksheets were added to estimate the combined dropout rates and buffer the sample size accordingly: "Dropouts - 2 rates", and "Dropouts - 3 rates". Added "RefScaledBE" Worksheet - sample size table for HVDs and NTIDs.
 Version 2.8: FARTSSIE moves to Github! TotalCV calculation added to Parallel BE sheet. Prompt for CV on Parallel BE updated to Total CV.
+There were a few "quiet" updates for version 2.8 that didn't warrant a version number increase. For instance I think 
 Version 2.7: PowerTOST suggested example code corrected.
-There were a few "quiet" updates for version 2.8 that didn't warrant a version number increase. For instance I think I finally found and corrected the Error 13 bug on some Mac platforms.
+I finally found and corrected the Error 13 bug on some Mac platforms.
 Version 2.6: Added graphs to Parallel BE worksheet, and Mac had some macro issues with Double variable type (changed to Variant).
 Version 2.5: Removed Reference-Scaled BE Limits (skewed results at higher CVs, improper method implemented). Added links to PowerTOST.
 Version 2.4: Fixed the way that d was depicted on superiority and non-inferiority trials.
