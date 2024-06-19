@@ -7,7 +7,7 @@ If you are downloading FARTSSIE on a Windows 11 operating system, you will need 
 <li>Select "Properties"</li>
 <li>In the "Security" section, click "Unblock", then click "Apply".</li>
 <li>When you open the file in Excel, click "Enable Content".</li>
-<ol>
+</ol>
 <p>
 Hidden under the visual basic code of FARTSSIE is the version history:<p>
 
