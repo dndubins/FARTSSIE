@@ -1,12 +1,14 @@
-INSTALLATION
-------------
-FARTSSIE is a standalone Excel macro-enabled file (.xlsm). Macros need to be enabled for the spreadsheet to function.
+INSTALL
+-------
+FARTSSIE is a standalone Excel macro-enabled file (.xlsm). Installing is not required. Macros need to be enabled for the spreadsheet to function.<p>
 If you are downloading FARTSSIE on a Windows 11 operating system, you will need to do the following:
--Right-click on the downloaded file
--Select "Properties"
--In the "Security" section, click "Unblock", then click "Apply".
--When you open the file in Excel, click "Enable Content".
-
+<ol>
+<li>Right-click on the downloaded file</li>
+<li>Select "Properties"</li>
+<li>In the "Security" section, click "Unblock", then click "Apply".</li>
+<li>When you open the file in Excel, click "Enable Content".</li>
+<ol>
+<p>
 Hidden under the visual basic code of FARTSSIE is the version history:<p>
 
 ```
