@@ -8,6 +8,7 @@ If you are downloading FARTSSIE on a Windows 11 operating system, you will need 
 <li>In the "Security" section, click "Unblock", then click "Apply".</li>
 <li>When you open the file in Excel, click "Enable Content".</li>
 </ol>
+<b>Note:</b> You might need to save the Excel file on a local drive. Network/shared drives (e.g. OneDrive) do not allow running Excel files with macros.
 <p>
 Hidden under the visual basic code of FARTSSIE is the version history:<p>
 
@@ -50,3 +51,4 @@ For instance, the bootstrapping programs I posted do not run a single ANOVA. Thi
 "I don't know, I didn't listen.”
 ― Douglas Adams, The Hitchhiker's Guide to the Galaxy
 (also applicable to my relationship with statistics)
+
