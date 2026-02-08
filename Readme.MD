@@ -16,6 +16,7 @@ Hidden under the visual basic code of FARTSSIE is the version history:<p>
 ```
 VERSION HISTORY
 ---------------
+Version 3.1: Added back-calcuation of IntraCV from 90%CI for 3PSR and 4PSR study designs.
 Version 3.0: Corrected routine to calculate total CV from published CI for Bioequivalence, Parallel (PowerTOST method).
 Version 2.9: Two worksheets were added to estimate the combined dropout rates and buffer the sample size accordingly: "Dropouts - 2 rates", and "Dropouts - 3 rates". Added "RefScaledBE" Worksheet - sample size table for HVDs and NTIDs.
 Version 2.8: FARTSSIE moves to Github! TotalCV calculation added to Parallel BE sheet. Prompt for CV on Parallel BE updated to Total CV.
@@ -52,6 +53,7 @@ For instance, the bootstrapping programs I posted do not run a single ANOVA. Thi
 "I don't know, I didn't listen.”
 ― Douglas Adams, The Hitchhiker's Guide to the Galaxy
 (also applicable to my relationship with statistics)
+
 
 
 
