@@ -1,4 +1,7 @@
-/* 
+/* CROSSOVER_SIMPLE.SAS: 2-Way Crossover Bioequivalence Program
+Adapted by: D. Dubins
+Date: 13-Feb-26
+
 The procedure for running the ANOVA in this program was adapted from the book:
 
 Patterson S. and Jones B., Bioequivalence and Statistics in Clinical Pharmacology.
@@ -7,10 +10,13 @@ Chapman & Hall/CRC, Boca Raton FL, USA; 2006
 with minor modifications.
 */
 
+/* Close any prior PRINTTO first */
+PROC PRINTTO; RUN;
+
 /* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
 Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
 path and output filename below. The program will create the output file, or over-write it if it exits.*/
-FILENAME _n&sysindex "/home/u63317948/output/crossover.txt";
+FILENAME _n&sysindex "/home/u63317948/output/crossover_simple.txt";
 PROC PRINTTO NEW PRINT=_n&sysindex;
 RUN;
 
@@ -84,3 +90,6 @@ random Subject(Sequence);
 lsmeans Treatment/pdiff cl alpha=0.1;
 estimate 'Average Bioequivalence for log(Cmax)' Treatment 1 -1;
 run;
+
+/* Always close at end */
+PROC PRINTTO; RUN;
