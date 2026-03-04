@@ -1,14 +1,17 @@
-/* 
-Bootstrapping Program
+/* BOOTSTRAP.sas: Bootstrapping Program
+Adapted by: D. Dubins
+Date: 13-Feb-26
 
 This program was adapted from the programs accompanying the book:
 
 Patterson S. and Jones B., Bioequivalence and Statistics in Clinical Pharmacology.
 Chapman & Hall/CRC, Boca Raton FL, USA; 2006
 
-with minor modifications. The original program is available for download here:
-http://www.crcpress.com/e_products/downloads/download.asp?cat_no=C5300
+with minor modifications.
 */
+
+/* Close any prior PRINTTO first */
+PROC PRINTTO; RUN;
 
 /* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
 Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
@@ -218,3 +221,6 @@ tables i_auc i_cmax index;
 run;
 
 quit;run;
+
+/* Always close at end */
+PROC PRINTTO; RUN;
