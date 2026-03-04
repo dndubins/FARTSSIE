@@ -1,4 +1,6 @@
-/* r-Studentized Residuals Program 
+/* RSTUDENT.sas: r-Studentized Residuals Program 
+Adapted by: D. Dubins
+Date: 13-Feb-26
 
 The procedure for estimating studentized residuals was adapted from:
 
@@ -7,6 +9,9 @@ http://www.math.wustl.edu/~sawyer/s475f05/onetworeg.sas
 with minor modifications. 
 
 */
+
+/* Close any prior PRINTTO first */
+PROC PRINTTO; RUN;
 
 /* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
 Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
