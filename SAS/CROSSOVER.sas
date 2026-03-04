@@ -1,4 +1,14 @@
-/* 2-Way Crossover Bioequivalence Program */
+/* CROSSOVER.SAS: 2-Way Crossover Bioequivalence Program
+Adapted by: D. Dubins
+Date: 13-Feb-26
+
+The procedure for running the ANOVA in this program was adapted from the book:
+
+Patterson S. and Jones B., Bioequivalence and Statistics in Clinical Pharmacology.
+Chapman & Hall/CRC, Boca Raton FL, USA; 2006
+
+with minor modifications.
+*/
 
 %LET PROJECT=TPD Part A Example;        /* project number */
 %LET DRUG=Drug;           /* drug name */
@@ -7,6 +17,9 @@
 %LET TIMEFORMAT=8.2;	  /* format for Tmax, t1/2 */
 %LET CONCFORMAT=9.2;	  /* Same as LLOQ. Format for Cmax, AUCt, etc. */
 %LET RATIOFORMAT=7.4;	  /* format for AUCratio, lambda */
+
+/* Close any prior PRINTTO first */
+PROC PRINTTO; RUN;
 
 /* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
 Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
@@ -61,7 +74,7 @@ datalines;
 11	AB	1	A	165.365	200.2484275	23.15	4	0.148494583	4.66782807	0.825799244
 11	AB	2	B	269.01575	322.881255	57.05	1.5	0.141092152	4.912726701	0.8331724
 12	BA	1	B	105.5625	125.9648343	47.2	0.66	0.356331774	1.945229784	0.838031507
-12	BA	2	A	87.9882	.	37.76	0.66	0.262785419	2.6376927	.
+12	BA	2	A	87.9882	112.2665638	37.76	0.66	0.262785419	2.6376927	0.783743592
 13	BA	1	B	290.142	310.4973322	70.88	1.5	0.402842848	1.720639161	0.934442811
 13	BA	2	A	182.77325	214.6103051	43.3	1	0.241228342	2.873406896	0.851651788
 14	AB	1	A	122.47815	149.0976283	68.25	0.66	0.478596908	1.448290135	0.821462765
@@ -267,3 +280,6 @@ proc print label data=Summary noobs;
       StdErr="Standard Error"
 	  POWER="Power (%)";
 run;
+
+/* Always close at end */
+PROC PRINTTO; RUN;
