@@ -1,4 +1,7 @@
-/* 
+/* OUTLIER.sas - outlier detection using the r-studentized residuals test, with Shapiro-Wilk Normality Test
+Adapted by: D. Dubins
+Date: 13-Feb-26
+
 The procedure for estimating studentized residuals was adapted from:
 
 http://www.math.wustl.edu/~sawyer/s475f05/onetworeg.sas
@@ -6,14 +9,19 @@ http://www.math.wustl.edu/~sawyer/s475f05/onetworeg.sas
 with minor modifications. 
 */
 
+/* Close any prior PRINTTO first */
+PROC PRINTTO; RUN;
+
 /* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
 Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
 path and output filename below. The program will create the output file, or over-write it if it exits.*/
-
 /* Create an output file: */
 FILENAME _n&sysindex "/home/u63317948/output/outlier.txt";
 PROC PRINTTO NEW PRINT=_n&sysindex;
 RUN;
+
+ODS GRAPHICS OFF;
+ODS LISTING CLOSE;
 
 OPTION NODATE PS=43 LS=120 NONUMBER;
 
@@ -207,3 +215,6 @@ estimate 'Average Bioequivalence for ln(Cmax) B vs. C' Treatment 0 1 -1;
 contrast 'A vs. C' Treatment 1 0 -1;
 contrast 'B vs. C' Treatment 0 1 -1;
 */
+
+/* Always close at end */
+PROC PRINTTO; RUN;
