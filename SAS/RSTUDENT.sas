@@ -13,6 +13,9 @@ with minor modifications.
 /* Close any prior PRINTTO first */
 PROC PRINTTO; RUN;
 
+/* Turn off ods graphics */
+ods graphics off;
+
 /* Output the results to a file. In SAS Studio, you need to specify the correct directory on the server. 
 Right-click on the SAS program, click "Properties", find out the folder location, then copy the correct 
 path and output filename below. The program will create the output file, or over-write it if it exits.*/
@@ -67,8 +70,15 @@ datalines;
 ;
 run;
 
+/* First, remove missing AUCt values: */
+data ABE_AUCt;
+set ABEexample1;
+if not missing(AUCt);
+run;
+
+
 /* Here's the ANOVA for ln-AUCt: */
-proc GLM data=ABEexample1;   *Note that GLM is used here;
+proc GLM data=ABE_AUCt;   *Note that GLM is used here;
 class Sequence Subject Period Treatment;
 model lnauct=Sequence Subject(Sequence) Period Treatment / SS3;
 output out=Outstats_AUCt r=resid rstudent=rstudent cookd=cookd;
@@ -96,9 +106,17 @@ label Subject="Subject"
     lnauct="ln(AUCt)";
 run;
 
+/* First, remove missing AUCinf values: */
+data ABE_AUCinf;
+set ABEexample1;
+if not missing(AUCinf);
+run;
+
+proc contents data=Outstats_AUCinf;
+run;
 
 /* Here's the ANOVA for ln-AUCinf: */
-proc GLM data=ABEexample1;   *Note that GLM is used here;
+proc GLM data=ABE_AUCinf;   *Note that GLM is used here;
 class Sequence Subject Period Treatment;
 model lnaucinf=Sequence Subject(Sequence) Period Treatment / SS3;
 output out=Outstats_AUCinf r=resid rstudent=rstudent cookd=cookd;
@@ -126,8 +144,14 @@ label Subject="Subject"
     lnaucinf="ln(AUCinf)";
 run; 
 
+/* First, remove missing Cmax values: */
+data ABE_Cmax;
+set ABEexample1;
+if not missing(Cmax);
+run;
+
 /* Here's the ANOVA for ln-Cmax: */
-proc GLM data=ABEexample1;   *Note that GLM is used here;
+proc GLM data=ABE_Cmax;   *Note that GLM is used here;
 class Sequence Subject Period Treatment;
 model lncmax=Sequence Subject(Sequence) Period Treatment / SS3;
 output out=Outstats_Cmax r=resid rstudent=rstudent cookd=cookd;
